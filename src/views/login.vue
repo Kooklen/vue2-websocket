@@ -12,18 +12,24 @@ import router from "@/router";
 
 export default {
   name: "login",
-  data(){
-    return{
-      username:""
+  data() {
+    return {
+      username: ""
     }
-},
-  methods:{
-    login(){
-      if(this.username.trim().length<6){
+  },
+  mounted() {
+    const username = localStorage.getItem("username")
+    if (username) {
+      this.$router.push('/home')
+    }
+  },
+  methods: {
+    login() {
+      if (this.username.trim().length < 6) {
         alert("请输入至少六位用户名")
         return
-      }else{
-        localStorage.setItem('username',this.username)
+      } else {
+        localStorage.setItem('username', this.username)
         router.push('home')
       }
     }
